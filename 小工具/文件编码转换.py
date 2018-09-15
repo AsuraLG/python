@@ -10,7 +10,7 @@ def writeFile(filePath, u, encoding):
 	with codecs.open(filePath, 'w', encoding) as f:
 		f.write(u)
 
-def convert2utf8(src, dst):
+def convert(src, dst, encoding = 'utf-8'):
 	# 检测编码，coding可能检测不到编码，有异常
 	f = open(src, 'rb')
 	coding = chardet.detect(f.read())['encoding'].lower()
@@ -26,14 +26,14 @@ def convert2utf8(src, dst):
 			except Exception:
 				print src + ' ' + coding + ' read error'
 
-# 把目录中指定后缀的文件编码由任何编码转换为指定编码，默认为utf-8
+# 把目录中指定的文件由任何编码转换为指定编码，默认为utf-8
 def work(rootdir):
 	#os.walk会遍历所有子文件夹，topdown指定遍历算法，True为广度优先遍历， False为深度优先遍历
 	for parent, dirs, files in os.walk(rootdir, topdown=False):
 		for file in files:
 			#print os.path.join(parent, file))
-			if file.endswith('.java'):
-				convert2utf8(os.path.join(parent, file), os.path.join(parent, file))
+			if file.endswith('.txt'):
+				convert(os.path.join(parent, file), os.path.join(parent, file))
 		
 if __name__ == '__main__':
 	# 读取搜索的起始路径
