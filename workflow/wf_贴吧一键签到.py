@@ -4,7 +4,7 @@ import requests
 import re
 import webbrowser
 import clipboard
-from datetime Import datetime
+from datetime import datetime
 from bs4 import BeautifulSoup
 from bs4 import SoupStrainer
 import sys
