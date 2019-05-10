@@ -45,12 +45,16 @@ nameList = [(name.text, name.get('href')[5:]) for name in nameDoc.select('a')] #
 
 # 对每一个贴吧，发送tbs查询请求并签到
 for name  in nameList:
+	specialHeaders = {
+		'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0'
+	}
+
 	# 获取每个贴吧的主页
-	checkUrl = 'http://tieba.baidu.com/f?ie=utf-8&kw=' + name[0] + '&fr=search'
-	checkResp = session.get(checkUrl, cookies = commonCookies, headers = commonHeaders)
+	checkUrl = 'http://tieba.baidu.com/mo/q----,sz@320_240-1-3---2/m?kw=' + name[1]
+	checkResp = session.get(checkUrl, cookies = commonCookies, headers = specialHeaders)
 	
 	# 提取tbs
-	tbs = re.search(r'"tbs":"(.*?)"', checkResp.text).group(1)
+	tbs = re.search(r'name="tbs" value="(.*?)"', checkResp.text).group(1)
 	
 	# 实施签到
 	signData = {
