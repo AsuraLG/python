@@ -1,6 +1,8 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
+# for python3
+
 import crcmod.predefined
 import sys
 
@@ -26,7 +28,7 @@ CRC64，CRC64We，CRC64Jones
 
 
 def main():
-	print u'''8bitCRC：
+	print('''8bitCRC：
 CRC8，CRC8Darc，CRC8ICode，CRC8Itu，CRC8Maxim，CRC8Rohc，CRC8Wcdma
 
 16bitCRC：
@@ -40,12 +42,12 @@ CRC32，CRC32Bzip2，CRC32C，CRC32D，CRC32Mpeg，CRCPosix，CRC32Q，CRCJamCrc
 
 64bitCRC：
 CRC64，CRC64We，CRC64Jones
-'''
-	type = raw_input(u'算法类型: '.encode('gbk'))
-	str = raw_input(u'字符串: '.encode('gbk'))
+''')
+	type = input('算法类型: ')
+	str = input('字符串: ')
 	crcGen = crcmod.predefined.mkPredefinedCrcFun(type)
-	print u'结果为：0x'+hex(crcGen(str)).upper()[2:]
-	raw_input(u'请按下任意键退出'.encode('gbk'));
+	print('结果为：0x'+hex(crcGen(str.encode())).upper()[2:])
+	input('请按下任意键退出');
 	
 if __name__ == '__main__':
 	main()

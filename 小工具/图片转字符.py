@@ -1,6 +1,8 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
+# for python3
+
 from PIL import Image, ImageFont, ImageDraw
 import sys
 
@@ -10,7 +12,7 @@ gray2char = list('#&$*o!;.')
 unit = (256.0)/len(gray2char)
 
 if 3 != len(sys.argv):
-	print 'Usage: python img2ascii.py [zoom] [source_path]'
+	print('Usage: python img2ascii.py [zoom] [source_path]')
 	exit(0)
 
 zoom = float(sys.argv[1]) #缩放比例，通常情况下保持为1即可
@@ -31,7 +33,7 @@ def func(n):
 	
 # 获取字体对象，用于后续将ascii字符串转换成图片
 def getImgFont(fontsize):
-	return ImageFont.truetype(r'J:\Windows\Fonts\consolab.ttf', fontsize)
+	return ImageFont.truetype(r'C:\Windows\Fonts\consolab.ttf', fontsize)
 	#return ImageFont.load_default()
 
 # 根据ascii字符集生成新图片	
@@ -52,7 +54,7 @@ def genImg(charset, fontsize = 10, bgcolor = '#FFFFFF'):
 	
 def main():
 	im = Image.open(inpath)
-	(width, height) = map(func, im.size)
+	(width, height) = list(map(func, im.size))
 	im = im.resize((width, height), Image.ANTIALIAS)
 	
 	res = [[0 for i in range(width)] for i in range(height)]
